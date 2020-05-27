@@ -50,6 +50,13 @@ public class ProductController {
                         model.addAttribute("logout",  logoutUri);
 			return "products";
 	}
+
+  @RequestMapping(value = "/public", method = RequestMethod.GET)
+  public String handleCustomersPublicRequest(Model model) {
+    model.addAttribute("public", productService.getPublicProducts());
+
+    return "public";
+  }
         
         @RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String handleLogoutt() throws ServletException {

@@ -24,7 +24,7 @@ import static org.keycloak.test.builders.ClientBuilder.AccessType.PUBLIC;
  */
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.DEFINED_PORT, classes = {ProductApplication.class})
+@SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.DEFINED_PORT, classes = { ProductApplication.class })
 public class ProductAppTest {
 
     private WebClient webClient = new WebClient(BrowserVersion.CHROME);

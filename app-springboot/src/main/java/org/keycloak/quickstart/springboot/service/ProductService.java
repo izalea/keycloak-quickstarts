@@ -18,7 +18,10 @@ package org.keycloak.quickstart.springboot.service;
 import java.util.Arrays;
 import java.util.List;
 import javax.validation.constraints.NotNull;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.keycloak.adapters.springsecurity.client.KeycloakRestTemplate;
+import org.keycloak.quickstart.springboot.ProductApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -26,17 +29,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProductService {
+    private static Log logger = LogFactory.getLog(ProductApplication.class);
 
     @Autowired
     private KeycloakRestTemplate template;
 
-    @NotNull
-    @Value("${product.service.url}")
-    private String endpoint;
 
     public List<String> getProducts() {
-        ResponseEntity<String[]> response = template.getForEntity(endpoint, String[].class);
+        ResponseEntity<String[]> response = template.getForEntity("http://localhost:3000/products", String[].class);
         return Arrays.asList(response.getBody());
     }
 
+    public List<String> getPublicProducts() {
+        ResponseEntity<String[]> response = template.getForEntity("http://localhost:3000/public", String[].class);
+        return Arrays.asList(response.getBody());
+    }
 }

@@ -8,6 +8,8 @@
 <body>
 
 <header>
+     <a href="/public">public</a>
+
      <a href="/products">products</a>
 </header>
 
